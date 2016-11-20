@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="../mainTemplate.xhtml">
+
+            <ui:define name="windowTitle">Добавление</ui:define>
+
+            <ui:define name="scripts">
+                <h:outputScript library="js" name="add.js" target="head" />
+            </ui:define>
+
+
+            <ui:define name="content">
+
+                <div class="row">
+                    <div class="col-sm-8 col-md-offset-2">
+                        <h:form>
+                            <h:commandLink value="Вернуться на главную страницу" action="#{addItemBean.goToDisplayPage}" />
+                        </h:form>
+                    </div>
+                </div>
+
+                <h:form id="addItemForm" styleClass="form-inline">
+
+                    <div class="row">
+
+                        <div class="col-sm-8 col-md-offset-2">
+
+                            <h3>Добавление записи</h3>
+
+                            Дата
+                            <div class="input-group date" data-provide="datepicker">
+                                <h:inputText
+                                    id="itemDate"
+                                    class="form-control"
+                                    value="#{addItemBean.date}"
+                                    required="true"
+                                />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                            <h:message for="itemDate" /> <!-- ? -->
+
+                            Значение
+                            <h:inputText
+                                styleClass="form-control" value="#{addItemBean.value}"
+
+                            >
+                                <f:validateLongRange minimum="0" maximum="200" /> <!-- TODO: брать из Const? -->
+                            </h:inputText>
+
+                            StringId
+                            <h:inputText styleClass="form-control" value="#{addItemBean.stringIdPrefix}" required="true">
+                                <!-- TODO: еще валидатор? -->
+                            </h:inputText>
+
+                            <h:commandButton styleClass="btn btn-default" value="Добавить">
+                                <f:ajax execute="addItemForm" render="addItemForm" listener="#{addItemBean.addItem}" />
+                            </h:commandButton>
+
+                        </div>
+
+                        <div class="row">
+                            <div id="addItemMessage" class="col-sm-8 col-md-offset-2 text-center text-muted">
+                                <h:outputText value="#{addItemBean.message}" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>

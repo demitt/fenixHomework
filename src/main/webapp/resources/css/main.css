@@ -1,0 +1,46 @@
+/* Header */
+
+#header {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#header .userEmail:disabled {
+    cursor: auto;
+}
+
+#header form {
+    float: left;
+    margin-right: 5px;
+}
+
+
+/* DisplayPage content */
+
+#plotter {
+    height: 300px;
+}
+
+#clearForm, #generateForm, #addForm {
+    float: left;
+    margin-right: 5px;
+}
+
+#itemsTable {
+    margin-top: 10px;
+}
+
+
+/* AddPage content */
+
+#addItemForm input[type=text] {
+    width: 150px;
+}
+
+#addItemForm .btn {
+    margin-left: 5px;
+}
+
+#addItemMessage {
+    margin-top: 10px;
+}

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:body>
+    <ui:composition template="../mainTemplate.xhtml">
+
+
+
+        <ui:define name="windowTitle">Отображение</ui:define>
+
+
+
+        <ui:define name="scripts">
+            <h:outputScript library="webjars" name="/flot/0.8.3/jquery.flot.min.js" />
+            <h:outputScript library="webjars" name="/flot/0.8.3/jquery.flot.time.min.js" />
+            <!--<h:outputScript library="javax.faces" name="jsf.js" />-->
+            <h:outputScript library="js" name="display.js" />
+        </ui:define>
+
+
+
+        <ui:define name="content">
+
+
+            <div class="row">
+
+                <div class="col-sm-5 col-md-offset-2">
+
+                    <f:ajax
+                        execute="dateFrom dateTo"
+                        render="itemsTable"
+                        listener="#{displayBean.getItemsRange}"
+                        onevent="ua.demitt.fn.changeDateHandler"
+                    >
+
+                        <h:form id="datesForm" styleClass="form-inline">
+                            <!-- date from -->
+                            <div class="input-group date" data-provide="datepicker">
+                                <h:inputText id="dateFrom" class="form-control" value="#{displayBean.dateFrom}" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+
+                            -
+
+                            <!-- date to -->
+                            <div class="input-group date" data-provide="datepicker">
+                                <h:inputText id="dateTo" class="form-control" value="#{displayBean.dateTo}" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </f:ajax>
+
+                </div>
+
+
+                <div class="col-sm-5">
+
+                    <!-- clear button -->
+                    <h:form id="clearForm">  <!-- TODO: в commandButton ТОЧНО "action"? М.б. listener? -->
+                        <h:commandButton
+                            styleClass="btn btn-default"
+                            value="Очистить"
+                            disabled="#{!displayBean.isGeneratorDisabled}"
+                            action="#{displayBean.clearItems}"
+                        >
+                            <f:ajax
+                                render="itemsTable generateForm clearForm"
+                                onevent="ua.demitt.fn.clearPlotHandler"
+                            />
+                        </h:commandButton>
+                    </h:form>
+
+                    <!-- generate button -->
+                    <h:form id="generateForm">  <!-- TODO: в commandButton ТОЧНО "action"? М.б. listener? -->
+                        <h:commandButton
+                                styleClass="btn btn-default"
+                                value="Генерировать"
+                                disabled="#{displayBean.isGeneratorDisabled}"
+                                action="#{displayBean.generateItems}"
+                        >
+                            <f:ajax
+                                render="itemsTable generateForm clearForm datesForm"
+                                onevent="ua.demitt.fn.redrawPlotHandler"
+                            />
+                        </h:commandButton>
+                    </h:form>
+
+                    <!-- add item button -->
+                    <h:form id="addForm">
+                        <h:commandButton styleClass="btn btn-default" value="Добавить" action="#{displayBean.goToAddPage}"/>
+                    </h:form>
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <!-- graph -->
+                <div  class="col-sm-8 col-md-offset-2">
+                    <div id="plotter"></div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- table -->
+                <div class="col-sm-8 col-md-offset-2">
+
+                    <h:dataTable
+                        id="itemsTable"
+                        value="#{displayBean.items}"
+                        var="item"
+                        styleClass="table table-striped table-condensed"
+                        headerClass="info"
+                    >
+
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{item.id}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Дата</f:facet>
+                            <h:outputText value="#{item.date}" />
+                            <h:outputText style="display: none;" value="#{item.date}" converter="#{localDateToEpochDayConverter}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Значение</f:facet>
+                            #{item.value}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">StringId</f:facet>
+                            #{item.stringId}
+                        </h:column>
+
+                    </h:dataTable>
+
+                </div>
+
+            </div>
+
+
+        </ui:define>
+
+
+
+    </ui:composition>
+</h:body>
+</html>

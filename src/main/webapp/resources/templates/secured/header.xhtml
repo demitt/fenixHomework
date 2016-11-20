@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+    <h:body>
+        <div id="header" class="row">
+
+            <div class="col-sm-3 col-md-offset-2">
+                <h:form>
+                    <h:commandButton styleClass="btn btn-default userEmail" disabled="true" value="#{userSessionBean.email}" />
+                </h:form>
+
+                <h:form styleClass="form-inline">
+                    <h:commandButton
+                        value="Выйти"
+                        styleClass="btn btn-default"
+                        action="#{userSessionBean.logoutAction}"
+                    />
+                </h:form>
+
+            </div>
+
+        </div>
+    </h:body>
+</html>
