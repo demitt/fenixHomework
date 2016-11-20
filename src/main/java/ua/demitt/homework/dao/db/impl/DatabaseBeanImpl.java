@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
-/* Database emulation:) */
+/* Database emulation */
 
 @ManagedBean(name = "databaseBean", eager = true)
 @ApplicationScoped
@@ -34,14 +34,14 @@ public class DatabaseBeanImpl implements DatabaseBean {
         this.items = generateItemsIntern();
     }
 
-    //Returns null if user has not fount
+
+    //Users
+
+    //Returns null if user has not found
     @Override
     public String getPasswordByEmail(String email) {
         User user = this.users.get(email);
-        if (user == null) {
-            return null;
-        }
-        return user.getPassword();
+        return user == null ? null : user.getPassword();
     }
 
     @Override
@@ -53,6 +53,25 @@ public class DatabaseBeanImpl implements DatabaseBean {
     @Override
     public boolean isUserExists(String email) {
         return this.users.get(email) != null;
+    }
+
+
+    //Items
+
+    @Override
+    public boolean addItem(Item item) {
+        return addItemIntern(this.items, item);
+    }
+
+    private boolean addItemIntern(Map<LocalDate, Item> items, Item item) {
+        Item oldItem = items.putIfAbsent(item.getDate(), item);
+        return oldItem == null;
+    }
+
+    @Override
+    public List<Item> generateItems() {
+        this.items = generateItemsIntern();
+        return getItemsList();
     }
 
     private NavigableMap<LocalDate, Item> generateItemsIntern() {
@@ -76,22 +95,6 @@ public class DatabaseBeanImpl implements DatabaseBean {
         }
 
         return new TreeMap<>(items);
-    }
-
-    @Override
-    public boolean addItem(Item item) {
-        return addItemIntern(this.items, item);
-    }
-
-    private boolean addItemIntern(Map<LocalDate, Item> items, Item item) {
-        Item oldItem = items.putIfAbsent(item.getDate(), item);
-        return oldItem == null;
-    }
-
-    @Override
-    public List<Item> generateItems() {
-        this.items = generateItemsIntern();
-        return getItemsList();
     }
 
     public List<Item> getItemsList() {
@@ -124,6 +127,9 @@ public class DatabaseBeanImpl implements DatabaseBean {
     public int getItemsCount() {
         return this.items.size();
     }
+
+
+    //Bean's properties
 
     public void setUsers(Map<String, User> users) {
         this.users = users;

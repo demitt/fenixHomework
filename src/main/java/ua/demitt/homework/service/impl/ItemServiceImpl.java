@@ -8,13 +8,12 @@ import ua.demitt.homework.service.ItemService;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @ManagedBean(name = "itemService")
 @ApplicationScoped
-public class ItemServiceImpl implements ItemService, Serializable {
+public class ItemServiceImpl implements ItemService {
 
     @ManagedProperty("#{itemDao}")
     private ItemDao itemDao;

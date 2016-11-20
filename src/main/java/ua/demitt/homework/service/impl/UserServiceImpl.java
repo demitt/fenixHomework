@@ -6,17 +6,15 @@ import ua.demitt.homework.service.UserService;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import java.io.Serializable;
 
 @ManagedBean(name = "userService")
 @ApplicationScoped
-public class UserServiceImpl implements UserService, Serializable {
+public class UserServiceImpl implements UserService {
 
     @ManagedProperty("#{userDao}")
     private UserDao userDao;
 
-    public UserServiceImpl() {
-    }
+    public UserServiceImpl() {   }
 
     @Override
     public boolean login(String email, String password) {

@@ -7,13 +7,12 @@ import ua.demitt.homework.model.Item;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @ManagedBean(name = "itemDao")
 @ApplicationScoped
-public class ItemDaoImpl implements ItemDao, Serializable {
+public class ItemDaoImpl implements ItemDao {
 
     @ManagedProperty("#{databaseBean}")
     private DatabaseBeanImpl databaseBean;

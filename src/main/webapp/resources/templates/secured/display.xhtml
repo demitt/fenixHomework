@@ -15,7 +15,6 @@
         <ui:define name="scripts">
             <h:outputScript library="webjars" name="/flot/0.8.3/jquery.flot.min.js" />
             <h:outputScript library="webjars" name="/flot/0.8.3/jquery.flot.time.min.js" />
-            <!--<h:outputScript library="javax.faces" name="jsf.js" />-->
             <h:outputScript library="js" name="display.js" />
         </ui:define>
 
@@ -63,7 +62,7 @@
                 <div class="col-sm-5">
 
                     <!-- clear button -->
-                    <h:form id="clearForm">  <!-- TODO: в commandButton ТОЧНО "action"? М.б. listener? -->
+                    <h:form id="clearForm">
                         <h:commandButton
                             styleClass="btn btn-default"
                             value="Очистить"
@@ -78,7 +77,7 @@
                     </h:form>
 
                     <!-- generate button -->
-                    <h:form id="generateForm">  <!-- TODO: в commandButton ТОЧНО "action"? М.б. listener? -->
+                    <h:form id="generateForm">
                         <h:commandButton
                                 styleClass="btn btn-default"
                                 value="Генерировать"
@@ -130,7 +129,7 @@
                         <h:column>
                             <f:facet name="header">Дата</f:facet>
                             <h:outputText value="#{item.date}" />
-                            <h:outputText style="display: none;" value="#{item.date}" converter="#{localDateToEpochDayConverter}" />
+                            <h:outputText style="display: none;" value="#{item.date}" converter="localDateToEpochDayConverter" />
                         </h:column>
 
                         <h:column>

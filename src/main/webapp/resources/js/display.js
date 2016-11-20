@@ -16,7 +16,6 @@ ua.demitt.var.plotObject = null;
 ua.demitt.var.plotOptions = {
     yaxis: {
         min: 0,
-        max: 200,
         color: "#ABBBEB"
     },
     xaxis: {
@@ -46,14 +45,6 @@ ua.demitt.var.plotOptions = {
 /*Functions*/
 
 
-/*ua.demitt.fn.templ = function(data) {
- if (data.status != "success") {
- return;
- }
- alert("!" + data.responseText);
- };*/
-
-
 ua.demitt.fn.getItemsDataFromTable = function() {
     var data = [];
     $("#itemsTable").find("TR:gt(0)").each(function() {
@@ -61,7 +52,6 @@ ua.demitt.fn.getItemsDataFromTable = function() {
         var dateInMilliseconds = parseInt($(this).find("SPAN").text()) * 24 * 3600 * 1000;
         data.push([dateInMilliseconds, value]);
     });
-    //console.log(data);
     return data;
 };
 
@@ -70,11 +60,6 @@ ua.demitt.fn.changeDateHandler = function(data) {
     if (data.status != "success") {
         return;
     }
-    //console.log(data.source);
-    //console.log(data.responseXML);
-    //console.log($.parseXML(data.responseText));
-    //jsf.ajax.request(this, event, { listener: "#{displayBean.getItemsForPlotter}", onevent: ua.demitt.templ });
-
     var itemsData = ua.demitt.fn.getItemsDataFromTable();
     ua.demitt.fn.redraw(itemsData);
 

@@ -3,12 +3,12 @@ package ua.demitt.homework.service.impl;
 import ua.demitt.homework.model.Const;
 import ua.demitt.homework.service.NavigationBean;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
 @ManagedBean(name = "navigationBean")
-@SessionScoped
+@ApplicationScoped
 public class NavigationBeanImpl implements NavigationBean, Serializable {
 
     @Override

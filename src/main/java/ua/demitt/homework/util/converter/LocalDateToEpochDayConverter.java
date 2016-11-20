@@ -1,12 +1,12 @@
 package ua.demitt.homework.util.converter;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 import java.time.LocalDate;
 
-@ManagedBean(name = "localDateToEpochDayConverter")
+@FacesConverter("localDateToEpochDayConverter")
 public class LocalDateToEpochDayConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String dateString) {

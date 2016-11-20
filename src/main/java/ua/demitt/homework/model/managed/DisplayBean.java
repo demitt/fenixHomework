@@ -54,14 +54,6 @@ public class DisplayBean {
         this.dateTo = dateTo;
     }
 
-    public void setItemService(ItemService itemService) {
-        this.itemService = itemService;
-    }
-
-    public void setNavigationBean(NavigationBean navigationBean) {
-        this.navigationBean = navigationBean;
-    }
-
     public void clearItems() {
         this.itemService.clearItems();
         this.items = new ArrayList<>();
@@ -96,5 +88,14 @@ public class DisplayBean {
     public String goToAddPage() {
         return this.navigationBean.addPage();
     }
+
+    public void setItemService(ItemService itemService) {
+        this.itemService = itemService;
+    }
+
+    public void setNavigationBean(NavigationBean navigationBean) {
+        this.navigationBean = navigationBean;
+    }
+
 
 }

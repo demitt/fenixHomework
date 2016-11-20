@@ -27,7 +27,7 @@ public class UserLoginBean {
     private String message;
 
     { //TODO tmp!
-        this.email = "demitt@ukr.net";
+        this.email = "user@ukr.net";
         this.password = "1";
     }
 

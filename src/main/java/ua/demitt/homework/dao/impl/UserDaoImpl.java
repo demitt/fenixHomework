@@ -6,11 +6,10 @@ import ua.demitt.homework.dao.db.impl.DatabaseBeanImpl;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import java.io.Serializable;
 
 @ManagedBean(name = "userDao")
 @ApplicationScoped
-public class UserDaoImpl implements UserDao, Serializable {
+public class UserDaoImpl implements UserDao {
 
     @ManagedProperty("#{databaseBean}")
     private DatabaseBeanImpl databaseBean;
