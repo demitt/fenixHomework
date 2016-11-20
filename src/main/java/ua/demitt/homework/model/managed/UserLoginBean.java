@@ -26,22 +26,6 @@ public class UserLoginBean {
     private String password;
     private String message;
 
-    { //TODO tmp!
-        this.email = "user@ukr.net";
-        this.password = "1";
-    }
-
-    /*@PostConstruct
-    public void initialize() {
-        if (isUserInSession()) {
-            this.navigationBean.defaultPage();
-        }
-    }
-
-    private boolean isUserInSession() {
-        return Util.getExternalContext().getSessionMap().get(Const.SESSION_USER_ID_NAME) != null;
-    }*/
-
     public UserLoginBean() {   }
 
     public String getEmail() {

@@ -5,10 +5,10 @@ import ua.demitt.homework.service.UserService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name = "userRegisterBean")
-@ViewScoped
+@RequestScoped
 public class UserRegisterBean {
 
     @ManagedProperty("#{userService}")

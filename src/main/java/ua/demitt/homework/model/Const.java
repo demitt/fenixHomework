@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class Const {
 
     //Items:
+    public static final int ITEM_MIN_VALUE = 0;
     public static final int ITEM_MAX_VALUE = 200;
     public static final LocalDate ITEM_MIN_DATE = LocalDate.of(2016, 1, 1);
     public static final int ITEMS_COUNT = 50;
@@ -17,7 +18,6 @@ public class Const {
 
     //Navigation
     public static final String NAVIGATION_LOGIN_PAGE_FULL_PATH = "/resources/templates/login.xhtml";
-    //public static final String NAVIGATION_REDIRECT_SUFFIX = "?faces-redirect=true";
     public enum View {
         LOGIN("loginOutcome"),
         DISPLAY("displayOutcome"),
@@ -44,7 +44,8 @@ public class Const {
             public static final String USER_NOT_FOUND = "Такой пользователь не найден.";
         }
         public class Register {
-            public static final String ERROR = "Такой пользователь уже существует или пароли не совпадают...";
+            public static final String ERROR = "Такой пользователь уже существует или пароли не совпадают.";
+            //^ TODO: по-хорошему необходимо разграничить эти два случая (например, возвратом энама или через Exception)
             public static final String COMPLETED = "Вы успешно зарегистрировались. Теперь можно авторизоваться.";
         }
         public class Item {

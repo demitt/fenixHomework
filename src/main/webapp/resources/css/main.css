@@ -27,9 +27,12 @@
 }
 
 #itemsTable {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
+.tabHeader {
+    margin-top: 10px;
+}
 
 /* AddPage content */
 

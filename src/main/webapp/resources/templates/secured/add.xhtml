@@ -33,39 +33,47 @@
                             Дата
                             <div class="input-group date" data-provide="datepicker">
                                 <h:inputText
-                                    id="itemDate"
-                                    class="form-control"
-                                    value="#{addItemBean.date}"
-                                    required="true"
+                                    id="itemDate" styleClass="form-control" value="#{addItemBean.date}"
+                                    validator="localDateValidator"
                                 />
                                 <div class="input-group-addon">
                                     <span class="glyphicon glyphicon-th"></span>
                                 </div>
                             </div>
-                            <h:message for="itemDate" /> <!-- ? -->
 
                             Значение
                             <h:inputText
-                                styleClass="form-control" value="#{addItemBean.value}"
-
-                            >
-                                <f:validateLongRange minimum="0" maximum="200" /> <!-- TODO: брать из Const? -->
-                            </h:inputText>
+                                id="itemValue" styleClass="form-control" value="#{addItemBean.value}"
+                                validator="itemValueValidator"
+                            />
 
                             StringId
-                            <h:inputText styleClass="form-control" value="#{addItemBean.stringIdPrefix}" required="true">
-                                <!-- TODO: еще валидатор? -->
-                            </h:inputText>
+                            <h:inputText
+                                styleClass="form-control" value="#{addItemBean.stringIdPrefix}"
+                                required="false"
+                            />
 
                             <h:commandButton styleClass="btn btn-default" value="Добавить">
-                                <f:ajax execute="addItemForm" render="addItemForm" listener="#{addItemBean.addItem}" />
+                                <f:ajax
+                                    execute="addItemForm"
+                                    render="addItemForm"
+                                    listener="#{addItemBean.addItem}"
+                                />
                             </h:commandButton>
 
                         </div>
 
                         <div class="row">
                             <div id="addItemMessage" class="col-sm-8 col-md-offset-2 text-center text-muted">
-                                <h:outputText value="#{addItemBean.message}" />
+                                <p>
+                                    <h:message for="itemDate" />
+                                </p>
+                                <p>
+                                    <h:message for="itemValue" />
+                                </p>
+                                <p>
+                                    <h:outputText styleClass="beanErrorMessage" value="#{addItemBean.message}" />
+                                </p>
                             </div>
                         </div>
 

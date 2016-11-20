@@ -7,11 +7,11 @@ import ua.demitt.homework.service.NavigationBean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import java.time.LocalDate;
 
 @ManagedBean(name = "addItemBean")
-@ViewScoped
+@RequestScoped
 public class AddItemBean {
 
     @ManagedProperty("#{itemService}")

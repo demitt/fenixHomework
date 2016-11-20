@@ -30,7 +30,7 @@ public class DatabaseBeanImpl implements DatabaseBean {
     @PostConstruct
     public void initialize() {
         this.users = new HashMap<>();
-        createUser("user@ukr.net", "1"); //TODO: tmp!
+        //createUser("user@ukr.net", "1"); //test
         this.items = generateItemsIntern();
     }
 
@@ -78,6 +78,7 @@ public class DatabaseBeanImpl implements DatabaseBean {
         Map<LocalDate, Item> items = new HashMap<>();
         long minDate = Const.ITEM_MIN_DATE.toEpochDay();
         long deltaDate = LocalDate.now().toEpochDay() - minDate;
+        int deltaValue = Const.ITEM_MAX_VALUE - Const.ITEM_MIN_VALUE;
         long epochDay;
         int value;
         boolean itemAdded;
@@ -86,7 +87,7 @@ public class DatabaseBeanImpl implements DatabaseBean {
         while (counter <= Const.ITEMS_COUNT) {
             epochDay = minDate + (long)(deltaDate * Math.random());
             date = LocalDate.ofEpochDay(epochDay);
-            value = (int)(Const.ITEM_MAX_VALUE * Math.random());
+            value = Const.ITEM_MIN_VALUE + (int)(deltaValue * Math.random());
             Item item = new Item(counter, date, value, Const.ITEM_DEFAULT_PREFIX + counter);
             itemAdded = addItemIntern(items, item);
             if (itemAdded) {

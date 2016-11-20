@@ -25,13 +25,15 @@
                     <h:inputText id="email" styleClass="form-control" value="#{userLoginBean.email}" /><br/>
                     <label for="password">Пароль</label>
                     <h:inputSecret id="password" styleClass="form-control" value="#{userLoginBean.password}" /><br/>
-                    <h:commandButton value="Войти" styleClass="btn btn-default" action="#{userLoginBean.loginAction}" />
+                    <h:commandButton
+                        value="Войти" styleClass="btn btn-default" action="#{userLoginBean.loginAction}"
+                    />
                 </h:form>
             </div>
 
             <div class="col-sm-4">
                 <p class="text-muted">
-                    <h:outputText value="#{userLoginBean.message}" />
+                    <h:outputText value="#{userLoginBean.message}" styleClass="beanErrorMessage" />
                 </p>
             </div>
         </div>
@@ -80,7 +82,7 @@
                     <h:message for="passwordRegisterRepeat" />
                 </p>
                 <p>
-                    <h:outputText value="#{userRegisterBean.message}" />
+                    <h:outputText value="#{userRegisterBean.message}" styleClass="beanErrorMessage" />
                 </p>
             </div>
         </div>
